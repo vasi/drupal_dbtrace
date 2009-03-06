@@ -1,0 +1,11 @@
+dbtrace - (C) 2009 Dave Vasilevsky
+
+Basic demo of tracing DB queries in Drupal
+* Just prints to /tmp/dbtrace, obviously this should change!
+* Probably works only on Drupal 6
+* Traces in realtime, no lost queries if Drupal crashes
+
+Todo
+* Write somewhere nicer
+* Get pre-substitution query (with % expansions), return values?
+* Identify use of last_insert_id?
