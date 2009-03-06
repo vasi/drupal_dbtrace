@@ -1,0 +1,20 @@
+<?php
+
+require_once('dbtrace.arraylogger.inc');
+
+function dbtrace_query($appended) {
+    list($str, $duration) = $appended;
+    preg_match(',(\w+)\s*/\*\s*(\S+).*?\*/\s*(.*),', $str, $matches);
+    list($all, $func, $user, $query) = $matches;
+    $query = preg_replace('/\n+/', ' ', $query);
+    $timestamp = sprintf("%.5f", microtime(true));
+    
+    $fd = fopen('/tmp/dbtrace', 'a');
+    fwrite($fd, "$user\n$func\n$timestamp\n$duration\n$query\n\n");
+    fclose($fd);
+}
+
+function dbtrace_boot() {
+  global $queries;
+  $queries = new arraylogger('dbtrace_query');
+}

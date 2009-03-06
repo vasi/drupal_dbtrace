@@ -1,0 +1,6 @@
+; $Id:$
+name = DB Trace
+description = Trace database queries
+package = Development
+core = 6.x
+dependencies[] = devel
